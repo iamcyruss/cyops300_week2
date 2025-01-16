@@ -32,7 +32,10 @@ class UtilityProgram:
         self.today = datetime.today().date()
         self.date_to = date(2025, 7, 4)
 
-    def get_valid_number(self, prompt="Enter a number: ", error_message="Invalid input. Please enter a valid number."):
+    def get_valid_number(
+            self, prompt="Enter a number: ",
+            error_message="Invalid input. Please enter a valid number."
+            ):
         """
         Prompts the user to input a number until a valid float is provided.
 
@@ -55,22 +58,15 @@ class UtilityProgram:
             ):
         """
         Prompts the user to input a boolean value until a valid boolean is provided.
-
-        Parameters:
-            prompt (str): The input prompt message for the user.
-
-        Returns:
-            bool: A valid boolean entered by the user.
         """
         while True:
             user_input = input(user_boolean_string).strip().lower()
             if user_input in ["yes", "y"]:
                 return True
-            elif user_input in ["no", "n"]:
+            if user_input in ["no", "n"]:
                 return False
-            else:
-                print(error_message)
-        
+            print(error_message)
+
     def display_menu(self):
         """
         Display the options for the user.
@@ -92,12 +88,12 @@ class UtilityProgram:
         user_password_character_number = self.get_valid_number(
             "Input the number of characters for the password (10-20): "
             )
-        while not (10 <= user_password_character_number <= 20):
+        while not 10 <= user_password_character_number <= 20:
             print("Password length must be between 10 and 20.")
             user_password_character_number = self.get_valid_number(
                 "Input the number of characters for the password (10-20): "
                 )
-        
+
         # Get user preferences
         use_of_upper_case = self.boolean_check(
             user_boolean_string="Use of Upper Case?\n(y/n): ",
@@ -125,8 +121,8 @@ class UtilityProgram:
         if use_of_numbers:
             password_pool += "0123456789"
         if use_of_special_characters:
-            password_pool += "!@#$%^&*()-_=+[]\{\}|;:,.<>/?"
-        
+            password_pool += "!@#$%^&*()-_=+[]{}|;:,.<>/?"
+
         # Check if at least one option is selected
         if not password_pool:
             print("At least one option must be selected to generate a password.")
@@ -168,9 +164,9 @@ class UtilityProgram:
         """
         a = self.get_valid_number("Input the length of side 'a'.\n: ")
         b = self.get_valid_number("Input the length of side 'b'.\n: ")
-        angle_C_degrees = self.get_valid_number("Input the angle 'C' in degrees.\n: ")
-        angle_C_radians = math.radians(angle_C_degrees)
-        c = math.sqrt(a**2 + b**2 - 2 * a * b * math.cos(angle_C_radians))
+        angle_c_degrees = self.get_valid_number("Input the angle 'C' in degrees.\n: ")
+        angle_c_radians = math.radians(angle_c_degrees)
+        c = math.sqrt(a**2 + b**2 - 2 * a * b * math.cos(angle_c_radians))
         print(f"\nThe length of side a is: {c}")
 
     def calculate_cylinder_volume(self):
